@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>心动小镇攻略手册 · Heartopia Guide</title>
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@600;700;900&family=Noto+Sans+SC:wght@400;500;700&display=swap">
+<style>
+/* ===== 设计令牌 ===== */
+:root{
+  --bg:#F7F2E7;            /* 奶油纸底 */
+  --card:#FFFFFF;
+  --ink:#33463A;           /* 深绿墨色 */
+  --ink-soft:#5C6E60;
+  --green:#7FA98B;         /* 鼠尾草绿 主色 */
+  --green-deep:#3E5C4A;
+  --orange:#E8A15C;        /* 暖橙 强调 */
+  --orange-deep:#C97F38;
+  --sky:#8FBFC9;
+  --brown:#8A6F52;
+  --line:#E4DCC9;
+  --shadow:0 6px 24px rgba(62,92,74,.10);
+  --radius:18px;
+  --serif:"Noto Serif SC", "Songti SC", SimSun, serif;
+  --sans:"Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--sans);
+  color:var(--ink);
+  background:
+    radial-gradient(1200px 500px at 85% -5%, rgba(143,191,201,.28), transparent 60%),
+    radial-gradient(900px 460px at 8% 12%, rgba(232,161,92,.14), transparent 55%),
+    var(--bg);
+  line-height:1.7;
+}
+a{color:inherit;text-decoration:none}
+
+/* ===== 顶部导航 ===== */
+.topbar{
+  position:sticky;top:0;z-index:50;
+  background:rgba(247,242,231,.92);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.topbar-inner{
+  max-width:1120px;margin:0 auto;padding:12px 24px;
+  display:flex;align-items:center;gap:20px;flex-wrap:wrap;
+}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--serif);font-weight:900;font-size:19px;color:var(--green-deep)}
+.brand-mark{width:30px;height:30px;flex:none}
+.brand-mark svg{width:100%;height:100%}
+.nav{display:flex;gap:4px;flex-wrap:wrap;margin-left:auto}
+.nav a{
+  padding:8px 14px;border-radius:999px;font-size:14px;font-weight:500;color:var(--ink-soft);
+  transition:background .2s,color .2s;
+}
+.nav a:hover{background:rgba(127,169,139,.16);color:var(--green-deep)}
+
+/* ===== Hero ===== */
+.hero{
+  position:relative;min-height:520px;display:flex;align-items:flex-end;
+  color:#fff;overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+}
+.hero-scrim{
+  position:absolute;inset:0;
+  background:linear-gradient(180deg, rgba(51,70,58,.10) 0%, rgba(51,70,58,.28) 45%, rgba(38,52,43,.82) 100%);
+}
+.hero-inner{position:relative;max-width:1120px;margin:0 auto;padding:96px 24px 56px;width:100%}
+.hero .eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:13px;font-weight:700;letter-spacing:.12em;color:#FFE9C9;
+  background:rgba(62,92,74,.55);border:1px solid rgba(255,233,201,.35);
+  padding:6px 14px;border-radius:999px;margin-bottom:18px;
+}
+.hero h1{
+  font-family:var(--serif);font-weight:900;font-size:clamp(34px,6vw,58px);line-height:1.2;
+  text-shadow:0 2px 18px rgba(20,30,24,.45);
+}
+.hero h1 .accent{color:#FFD9A0}
+.hero .sub{
+  margin-top:14px;max-width:560px;font-size:clamp(15px,2vw,18px);color:rgba(255,255,255,.94);
+  text-shadow:0 1px 8px rgba(20,30,24,.5);
+}
+.hero .stats{
+  margin-top:26px;display:flex;gap:12px;flex-wrap:wrap;
+}
+.stat{
+  background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.28);
+  backdrop-filter:blur(6px);border-radius:14px;padding:10px 18px;text-align:center;
+}
+.stat b{display:block;font-family:var(--serif);font-size:22px;color:#FFE3B8}
+.stat span{font-size:12px;color:rgba(255,255,255,.88)}
+
+/* ===== 章节通用 ===== */
+section{max-width:1120px;margin:0 auto;padding:72px 24px 24px}
+.section-head{display:flex;align-items:baseline;gap:14px;margin-bottom:30px}
+.section-head .kicker{
+  font-family:var(--serif);font-weight:700;font-size:13px;letter-spacing:.18em;color:var(--orange-deep);
+  border-bottom:2px solid var(--orange);padding-bottom:2px;white-space:nowrap;
+}
+.section-head h2{font-family:var(--serif);font-weight:900;font-size:clamp(24px,3.4vw,34px);color:var(--green-deep)}
+.section-head .note{margin-left:auto;font-size:13px;color:var(--ink-soft);white-space:nowrap}
+
+/* ===== 新手开局：时间线 ===== */
+.timeline{position:relative;margin:8px 0 8px 8px;padding-left:34px}
+.timeline::before{
+  content:"";position:absolute;left:10px;top:8px;bottom:8px;width:2px;
+  background:linear-gradient(180deg,var(--green),var(--sky),var(--orange));
+  border-radius:2px;
+}
+.tl-item{position:relative;margin-bottom:22px}
+.tl-item::before{
+  content:"";position:absolute;left:-31px;top:8px;width:14px;height:14px;border-radius:50%;
+  background:var(--bg);border:3px solid var(--green);
+}
+.tl-item:last-child::before{border-color:var(--orange)}
+.tl-item .day{
+  display:inline-block;font-size:12px;font-weight:700;color:#fff;background:var(--green-deep);
+  padding:2px 10px;border-radius:999px;margin-bottom:6px;
+}
+.tl-item:last-child .day{background:var(--orange-deep)}
+.tl-item h3{font-family:var(--serif);font-weight:700;font-size:18px;margin-bottom:4px}
+.tl-item p{font-size:14px;color:var(--ink-soft);max-width:640px}
+
+/* ===== 卡片网格 ===== */
+.grid{display:grid;gap:16px}
+.grid-2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.grid-3{grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.grid-4{grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
+.card{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  box-shadow:var(--shadow);padding:22px;position:relative;
+  transition:transform .2s ease, box-shadow .2s ease;
+}
+.card:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(62,92,74,.15)}
+.card .tag{
+  position:absolute;top:16px;right:16px;font-size:11px;font-weight:700;color:var(--orange-deep);
+  background:#FBEEDC;border:1px solid #F2D9B4;padding:2px 10px;border-radius:999px;
+}
+.card h3{font-family:var(--serif);font-weight:700;font-size:18px;margin-bottom:8px;color:var(--green-deep)}
+.card p{font-size:14px;color:var(--ink-soft)}
+.card ul{list-style:none;margin-top:10px}
+.card li{font-size:13.5px;color:var(--ink-soft);padding:4px 0 4px 22px;position:relative}
+.card li::before{
+  content:"";position:absolute;left:4px;top:12px;width:7px;height:7px;border-radius:2px;
+  background:var(--green);transform:rotate(45deg);
+}
+.card li b{color:var(--ink)}
+.highlight{border-color:#EBC89B;background:linear-gradient(180deg,#FFFDF8,#FFF6E9)}
+.highlight::after{
+  content:"推荐";position:absolute;top:-10px;left:18px;font-size:11px;font-weight:700;
+  color:#fff;background:var(--orange);padding:2px 12px;border-radius:999px;
+}
+
+/* ===== 每日清单 ===== */
+.daily-wrap{display:grid;gap:20px;grid-template-columns:minmax(0,1fr) 300px;align-items:start}
+.daily-list{display:grid;gap:10px}
+.daily-item{
+  display:flex;align-items:flex-start;gap:14px;background:var(--card);
+  border:1px solid var(--line);border-radius:14px;padding:14px 16px;cursor:pointer;
+  transition:background .2s,border-color .2s;
+}
+.daily-item:hover{border-color:var(--green)}
+.daily-item .box{
+  flex:none;width:24px;height:24px;margin-top:2px;border-radius:8px;border:2px solid var(--green);
+  display:flex;align-items:center;justify-content:center;transition:background .2s;
+}
+.daily-item .box svg{width:14px;height:14px;stroke:#fff;stroke-width:3;fill:none;opacity:0;transition:opacity .2s}
+.daily-item.done{background:#F0F5EE;border-color:#C9DDC6}
+.daily-item.done .box{background:var(--green);border-color:var(--green)}
+.daily-item.done .box svg{opacity:1}
+.daily-item .txt b{display:block;font-size:15px}
+.daily-item .txt span{font-size:13px;color:var(--ink-soft)}
+.daily-item.done .txt b{color:var(--ink-soft);text-decoration:line-through;text-decoration-color:#9BB79E}
+.daily-side{position:sticky;top:84px}
+.progress-card{background:var(--green-deep);border-radius:var(--radius);padding:22px;color:#EAF2EB}
+.progress-card .ring{
+  width:96px;height:96px;margin:0 auto 14px;border-radius:50%;
+  background:conic-gradient(var(--orange) calc(var(--p,0)*1%), rgba(255,255,255,.16) 0);
+  display:flex;align-items:center;justify-content:center;
+}
+.progress-card .ring i{
+  width:72px;height:72px;border-radius:50%;background:var(--green-deep);
+  display:flex;align-items:center;justify-content:center;font-style:normal;
+  font-family:var(--serif);font-weight:900;font-size:20px;color:#FFE3B8;
+}
+.progress-card p{text-align:center;font-size:13.5px;color:#C7D8CB}
+.progress-card .reset-btn{
+  display:block;width:100%;margin-top:14px;border:1px solid rgba(255,255,255,.3);
+  background:rgba(255,255,255,.08);color:#fff;border-radius:10px;padding:9px;cursor:pointer;
+  font-size:13px;transition:background .2s;
+}
+.progress-card .reset-btn:hover{background:rgba(255,255,255,.16)}
+
+/* ===== 爱好 ===== */
+.hobby-zone{display:grid;gap:22px;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);align-items:stretch}
+.hobby-grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
+.hobby{
+  background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 14px;
+  text-align:center;transition:transform .2s,border-color .2s;
+}
+.hobby:hover{transform:translateY(-3px);border-color:var(--green)}
+.hobby .ic{
+  width:46px;height:46px;margin:0 auto 10px;border-radius:14px;display:flex;align-items:center;justify-content:center;
+}
+.hobby .ic svg{width:26px;height:26px;stroke:#fff;stroke-width:1.7;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.hobby b{display:block;font-size:14.5px;margin-bottom:2px}
+.hobby span{font-size:12px;color:var(--ink-soft)}
+.hobby-img{position:relative;border-radius:var(--radius);overflow:hidden;min-height:280px;box-shadow:var(--shadow)}
+.hobby-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hobby-img .cap{
+  position:absolute;left:0;right:0;bottom:0;padding:34px 20px 16px;color:#fff;
+  background:linear-gradient(180deg,transparent,rgba(38,52,43,.86));
+  font-size:13.5px;
+}
+.hobby-img .cap b{font-family:var(--serif);font-size:16px;display:block;margin-bottom:2px}
+
+/* ===== 图鉴 ===== */
+.ency-grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.ency{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:20px;display:flex;align-items:center;gap:16px;
+}
+.ency .num{
+  flex:none;width:60px;height:60px;border-radius:16px;background:#EEF4EC;color:var(--green-deep);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  font-family:var(--serif);font-weight:900;font-size:20px;line-height:1.1;
+}
+.ency .num small{font-size:10.5px;font-weight:700;color:var(--ink-soft);letter-spacing:.06em}
+.ency b{display:block;font-size:15.5px}
+.ency span{font-size:12.5px;color:var(--ink-soft)}
+.ency.gold{background:linear-gradient(135deg,#FFF9EC,#FDEED6);border-color:#EDD3A6}
+.ency.gold .num{background:#FBEEDC;color:var(--orange-deep)}
+
+/* ===== 食谱赚钱 ===== */
+.recipe-note{
+  margin-top:18px;background:#F1F6F0;border-left:4px solid var(--green);
+  border-radius:0 14px 14px 0;padding:14px 18px;font-size:13.5px;color:var(--ink-soft);
+}
+.recipe-note b{color:var(--green-deep)}
+
+/* ===== 兑换码 ===== */
+.code-card{
+  background:linear-gradient(135deg,var(--green-deep),#54705E);color:#EDF4ED;
+  border-radius:var(--radius);padding:30px;display:grid;gap:16px;grid-template-columns:1.4fr 1fr;align-items:center;
+}
+.code-card h3{font-family:var(--serif);font-size:22px;font-weight:900;color:#FFE3B8}
+.code-card p{font-size:14px;color:#D4E2D6}
+.code-card .steps{background:rgba(255,255,255,.08);border-radius:14px;padding:16px 18px;font-size:13.5px;list-style:none;counter-reset:s}
+.code-card .steps li{position:relative;padding:4px 0 4px 30px;counter-increment:s}
+.code-card .steps li::before{
+  content:counter(s);position:absolute;left:0;top:6px;width:20px;height:20px;border-radius:50%;
+  background:var(--orange);color:#fff;font-size:11px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;
+}
+.code-warn{
+  margin-top:14px;font-size:13px;color:var(--ink-soft);background:#FDF3E4;
+  border:1px dashed var(--orange);border-radius:12px;padding:12px 16px;
+}
+
+/* ===== 页脚 ===== */
+footer{margin-top:80px;background:var(--green-deep);color:#C9D8CC;padding:34px 24px}
+footer .inner{max-width:1120px;margin:0 auto;display:flex;gap:18px;flex-wrap:wrap;align-items:center;justify-content:space-between;font-size:13px}
+footer a{color:#FFE3B8;border-bottom:1px dotted rgba(255,227,184,.5)}
+footer .src{font-size:12px;opacity:.8}
+
+/* ===== 响应式 ===== */
+@media (max-width:900px){
+  .daily-wrap,.hobby-zone{grid-template-columns:1fr}
+  .code-card{grid-template-columns:1fr}
+  .daily-side{position:static}
+  .nav{margin-left:0;width:100%}
+}
+@media (max-width:560px){
+  section{padding-top:52px}
+  .hero{min-height:440px}
+  .stat{padding:8px 12px}
+  .stat b{font-size:18px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .card,.hobby{transition:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== 顶部导航 ===== -->
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="#top">
+      <span class="brand-mark"><svg viewBox="0 0 32 32" fill="none"><path d="M16 3c6 4.5 10 9.2 10 14.5 0 5-4.5 9.5-10 9.5s-10-4.5-10-9.5C6 12.2 10 7.5 16 3Z" fill="#7FA98B"/><path d="M12 17c2-2.6 6-2.6 8 0M13.4 20.4c.8.8 4.4.8 5.2 0" stroke="#3E5C4A" stroke-width="1.8" stroke-linecap="round"/><circle cx="13" cy="14.5" r="1" fill="#3E5C4A"/><circle cx="19" cy="14.5" r="1" fill="#3E5C4A"/></svg></span>
+      心动小镇攻略手册
+    </a>
+    <nav class="nav">
+      <a href="#begin">新手开局</a>
+      <a href="#daily">每日必做</a>
+      <a href="#hobby">七大爱好</a>
+      <a href="#ency">图鉴速览</a>
+      <a href="#money">赚钱食谱</a>
+      <a href="#codes">兑换码</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ===== Hero ===== -->
+<div class="hero" id="top">
+  <img class="hero-bg" src="https://aka.doubaocdn.com/s/kS98byJtmU" alt="心动小镇田园小镇全景插画">
+  <div class="hero-scrim"></div>
+  <div class="hero-inner">
+    <span class="eyebrow">HEARTOPIA · 心动小镇 · 中文攻略手册</span>
+    <h1>把小镇的每一天<br>过得<span class="accent">刚刚好</span></h1>
+    <p class="sub">这是一本给「发展家」的生活手册：新手怎么起步、每天做什么、鱼在哪钓、钱怎么赚——不肝不卷，按自己的节奏把小镇过成喜欢的样子。</p>
+    <div class="stats">
+      <div class="stat"><b>20</b><span>位小镇居民</span></div>
+      <div class="stat"><b>90+</b><span>种鱼待收集</span></div>
+      <div class="stat"><b>80+</b><span>道食谱配方</span></div>
+      <div class="stat"><b>7</b><span>大生活爱好</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 新手开局 ===== -->
+<section id="begin">
+  <div class="section-head">
+    <span class="kicker">01 · 开局路线</span>
+    <h2>新手第一周怎么玩</h2>
+    <span class="note">核心：跟着 D.G. 发展家等级走</span>
+  </div>
+  <div class="timeline">
+    <div class="tl-item">
+      <span class="day">第 1 天</span>
+      <h3>跟完星灵向导教程，先学钓鱼</h3>
+      <p>完成角色创建和基础操作引导，拜访初始家园。瓦尼亚会教你钓鱼——这是解锁的第一个爱好，也是最容易上手的日常收入来源。当天把居民委托做起来，不用赶进度。</p>
+    </div>
+    <div class="tl-item">
+      <span class="day">第 2–3 天</span>
+      <h3>升到 D.G.3，解锁园艺</h3>
+      <p>居民委托是贡献勋章最稳定的来源（每天 5 个，早上 6 点刷新）。升到发展家 3 级后解锁园艺，开始种第一批作物，钓鱼 + 种田两条线同时跑。</p>
+    </div>
+    <div class="tl-item">
+      <span class="day">第 4–7 天</span>
+      <h3>D.G.5 三选一：烹饪 / 捕虫 / 观鸟</h3>
+      <p>发展家 5 级可免费选一个扩展爱好。想赚钱选烹饪（食材加工后售价更高），喜欢收集选捕虫或观鸟。其他爱好后续需要扩展券，选你每天真正会玩的那个。</p>
+    </div>
+    <div class="tl-item">
+      <span class="day">持续</span>
+      <h3>每天 5 个委托 + 主线，是稳定上升的钥匙</h3>
+      <p>居民委托每天重置（服务器 6:00），是前期 D.G. 等级最快的来源。别跳主线，它解锁新区域、新系统和重要 NPC 功能。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 每日必做 ===== -->
+<section id="daily">
+  <div class="section-head">
+    <span class="kicker">02 · 每日清单</span>
+    <h2>今天在小镇做点什么</h2>
+    <span class="note">勾选后本地保存，次日可重置</span>
+  </div>
+  <div class="daily-wrap">
+    <div class="daily-list" id="dailyList"></div>
+    <aside class="daily-side">
+      <div class="progress-card">
+        <div class="ring" id="ring" style="--p:0"><i id="ringNum">0/9</i></div>
+        <p>今天的日常完成进度<br>坚持小额复利，比完美清单更有效</p>
+        <button class="reset-btn" id="resetBtn" type="button">重置今日清单</button>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- ===== 七大爱好 ===== -->
+<section id="hobby">
+  <div class="section-head">
+    <span class="kicker">03 · 生活爱好</span>
+    <h2>七大爱好，各过各的瘾</h2>
+    <span class="note">爱好不是任务，是享受</span>
+  </div>
+  <div class="hobby-zone">
+    <div class="hobby-grid">
+      <div class="hobby"><span class="ic" style="background:#7FA98B"><svg viewBox="0 0 24 24"><path d="M12 3v9m0 0c-2.5 0-4.5 2-4.5 4.5S9.5 21 12 21s4.5-2 4.5-4.5S14.5 12 12 12Z"/><path d="M8.5 20 4 22l1.5-4M15.5 20 20 22l-1.5-4"/></svg></span><b>钓鱼</b><span>河流、湖泊与海</span></div>
+      <div class="hobby"><span class="ic" style="background:#E8A15C"><svg viewBox="0 0 24 24"><path d="M12 4v3M12 10v3M5 8.5v7c0 1.9 3.1 3.5 7 3.5s7-1.6 7-3.5v-7"/><path d="M12 13c-3.9 0-7-1.6-7-3.5S8.1 6 12 6s7 1.6 7 3.5S15.9 13 12 13Z"/><path d="M5 8.5c0 1.9 3.1 3.5 7 3.5"/></svg></span><b>园艺</b><span>作物与杂交花卉</span></div>
+      <div class="hobby"><span class="ic" style="background:#C98B6B"><svg viewBox="0 0 24 24"><path d="M4 11h4l2-4 2 8 2-6 2 2h4"/><circle cx="6" cy="17" r="2.2"/><circle cx="18" cy="17" r="2.2"/></svg></span><b>烹饪</b><span>最赚钱的爱好</span></div>
+      <div class="hobby"><span class="ic" style="background:#8FBFC9"><svg viewBox="0 0 24 24"><path d="M12 8a6 6 0 0 0-6 6h12a6 6 0 0 0-6-6Z"/><path d="M12 8V4m0 0c-1.5 0-2.5 1-2.5 2M12 4c1.5 0 2.5 1 2.5 2M9 20h6"/></svg></span><b>捕虫</b><span>季节与夜行虫</span></div>
+      <div class="hobby"><span class="ic" style="background:#7F9C8F"><svg viewBox="0 0 24 24"><path d="M3 17h18M5 17c0-4 3-7 7-7s7 3 7 7M12 7v3"/><circle cx="12" cy="6" r="1"/></svg></span><b>观鸟</b><span>相机收集图鉴</span></div>
+      <div class="hobby"><span class="ic" style="background:#D9A0A0"><svg viewBox="0 0 24 24"><circle cx="9" cy="10" r="4.5"/><circle cx="15.5" cy="9" r="3"/><path d="M4.5 18.5c1.5-2.6 6.5-2.6 9 0M13.5 16.5c1.3-2 4.5-2 6.5 0"/></svg></span><b>养猫</b><span>陪伴与每日礼物</span></div>
+      <div class="hobby"><span class="ic" style="background:#A98FC9"><svg viewBox="0 0 24 24"><circle cx="8" cy="11" r="4.5"/><path d="M12.5 11.5c0-2.8 2.5-4.5 5-4.5s4 2 4 4-1.5 4.5-4 4.5c-2.5 0-5-1.7-5-4ZM3.5 18c1.8-2.8 7-2.8 9 0"/></svg></span><b>养狗</b><span>学指令一起散步</span></div>
+    </div>
+    <figure class="hobby-img">
+      <img src="https://aka.doubaocdn.com/s/APP1IeFJHl" alt="河边钓鱼的水彩插画">
+      <figcaption class="cap">
+        <b>钓鱼小贴士</b>
+        鱼的出现受「地点 + 天气 + 时段」三重影响。想收齐图鉴，记得先看小镇天气再出门。
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ===== 图鉴速览 ===== -->
+<section id="ency">
+  <div class="section-head">
+    <span class="kicker">04 · 收集图鉴</span>
+    <h2>小镇图鉴速览</h2>
+    <span class="note">数据随游戏版本持续更新</span>
+  </div>
+  <div class="ency-grid">
+    <div class="ency gold"><div class="num">95<small>种</small></div><div><b>鱼类图鉴</b><span>分地点 / 天气 / 时段</span></div></div>
+    <div class="ency"><div class="num">82<small>道</small></div><div><b>食谱大全</b><span>含食材与利润</span></div></div>
+    <div class="ency"><div class="num">73<small>种</small></div><div><b>昆虫图鉴</b><span>季节与捕捉条件</span></div></div>
+    <div class="ency"><div class="num">83<small>种</small></div><div><b>鸟类图鉴</b><span>位置与出没时间</span></div></div>
+    <div class="ency"><div class="num">15<small>种</small></div><div><b>农作物</b><span>生长周期各异</span></div></div>
+    <div class="ency"><div class="num">15<small>种</small></div><div><b>花卉</b><span>可杂交培育花色</span></div></div>
+    <div class="ency"><div class="num">20<small>位</small></div><div><b>小镇居民</b><span>位置与喜好礼物</span></div></div>
+    <div class="ency gold"><div class="num">55<small>种</small></div><div><b>猫狗宠物</b><span>品种与性格</span></div></div>
+  </div>
+</section>
+
+<!-- ===== 赚钱食谱 ===== -->
+<section id="money">
+  <div class="section-head">
+    <span class="kicker">05 · 赚钱路线</span>
+    <h2>新手最稳的三条赚钱线</h2>
+    <span class="note">烹饪 &gt; 园艺 &gt; 钓鱼</span>
+  </div>
+  <div class="grid grid-3">
+    <div class="card highlight">
+      <span class="tag">收益最高</span>
+      <h3>烹饪加工线</h3>
+      <p>把原料做成料理再卖，利润远高于直接卖原料。</p>
+      <ul>
+        <li><b>果酱路线</b>：水果随处可采，做成酱稳定出货</li>
+        <li><b>鱼类料理</b>：钓上来的鱼别急着卖，先下锅</li>
+        <li>卖出前先看一眼有没有任务需要，留点库存</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>园艺种植线</h3>
+      <p>按生长周期规划，搭配烹饪形成自循环。</p>
+      <ul>
+        <li>优先种<b>料理常用</b>的作物</li>
+        <li>花卉成熟后记得<b>杂交</b>，出稀有花色更值钱</li>
+        <li>每天浇水除草，成熟即收别浪费</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>钓鱼练级线</h3>
+      <p>解锁早、门槛低，顺手就能练级赚钱。</p>
+      <ul>
+        <li>清晨 / 特定天气常有<b>高价鱼</b>出没</li>
+        <li>鱼可入水族箱、喂宠物、做料理</li>
+        <li>想升爱好等级，钓鱼是最省心的日常</li>
+      </ul>
+    </div>
+  </div>
+  <div class="recipe-note">
+    <b>存钱原则：</b>金币优先投给「让每天更高效」的东西——扩建家园地块、仓库扩容、顺手的工具。外观类消费等你的日常流水稳定了再买，别让钱包跟不上节奏。
+  </div>
+</section>
+
+<!-- ===== 兑换码 ===== -->
+<section id="codes">
+  <div class="section-head">
+    <span class="kicker">06 · 免费福利</span>
+    <h2>兑换码与福利</h2>
+    <span class="note">限时有效，先兑先得</span>
+  </div>
+  <div class="code-card">
+    <div>
+      <h3>兑换码每周都在更新</h3>
+      <p>游戏内不定期放出限时兑换码，可领月光水晶、金币等福利。码会过期，看到就尽快兑换。</p>
+    </div>
+    <ol class="steps">
+      <li>进入游戏主界面，找到兑换入口</li>
+      <li>输入完整兑换码（注意大小写与连字符）</li>
+      <li>在邮件里查收奖励</li>
+    </ol>
+  </div>
+  <div class="code-warn">
+    具体兑换码请以<b>游戏内公告 / 官方社区 / 官方自媒体</b>发布的为准（本站不转载第三方码，避免失效或盗码风险）。常见领取渠道：游戏公告、官方社群活动、版本更新福利。
+  </div>
+</section>
+
+<!-- ===== 页脚 ===== -->
+<footer>
+  <div class="inner">
+    <span>心动小镇攻略手册 · Heartopia Guide</span>
+    <span class="src">内容参考社区公开资料，随版本更新调整 · 非官方站点</span>
+  </div>
+</footer>
+
+<script>
+/* ===== 每日清单数据 ===== */
+var DAILY = [
+  {t:"完成 5 个居民委托", d:"每天 6:00 重置，贡献勋章最稳来源", done:false},
+  {t:"收菜浇水，补种空田", d:"园艺的复利全在「每天顺手」里", done:false},
+  {t:"逛一遍 NPC 商店", d:"家具、服装、工具可能每天轮换", done:false},
+  {t:"采集路边免费材料", d:"果树/果丛砍一下、采一下，用最少体力拿收益", done:false},
+  {t:"看看今日天气", d:"雨雪天是稀有鱼和昆虫的出场时间", done:false},
+  {t:"短钓一杆练爱好等级", d:"顺手的日常，也是稳定的收入", done:false},
+  {t:"投喂小镇野生动物", d:"投喂喜欢的食物可收礼物", done:false},
+  {t:"照顾宠物", d:"喂食、清洁、陪玩，每天有礼物", done:false},
+  {t:"清理地图上的泡泡", d:"随手一点，收集惊喜物品", done:false}
+];
+
+var STORE_KEY = "heartopia_daily_v1";
+
+/* ===== 渲染 ===== */
+function render(){
+  var list = document.getElementById("dailyList");
+  list.innerHTML = "";
+  DAILY.forEach(function(item, i){
+    var div = document.createElement("div");
+    div.className = "daily-item" + (item.done ? " done" : "");
+    div.innerHTML =
+      '<span class="box"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>' +
+      '<span class="txt"><b>' + item.t + '</b><span>' + item.d + '</span></span>';
+    div.addEventListener("click", function(){ toggle(i); });
+    list.appendChild(div);
+  });
+  updateProgress();
+}
+
+function toggle(i){
+  DAILY[i].done = !DAILY[i].done;
+  save();
+  render();
+}
+
+function updateProgress(){
+  var done = DAILY.filter(function(x){return x.done;}).length;
+  var total = DAILY.length;
+  var pct = Math.round(done / total * 100);
+  document.getElementById("ring").style.setProperty("--p", pct);
+  document.getElementById("ringNum").textContent = done + "/" + total;
+}
+
+function save(){
+  try{
+    localStorage.setItem(STORE_KEY, JSON.stringify(DAILY.map(function(x){return x.done;})));
+  }catch(e){/* 隐私模式下静默降级 */}
+}
+
+function load(){
+  try{
+    var raw = localStorage.getItem(STORE_KEY);
+    if(!raw) return;
+    var arr = JSON.parse(raw);
+    if(!Array.isArray(arr)) return;
+    DAILY.forEach(function(x, i){ if(arr[i] === true) x.done = true; });
+  }catch(e){/* 忽略损坏数据 */}
+}
+
+document.getElementById("resetBtn").addEventListener("click", function(){
+  DAILY.forEach(function(x){ x.done = false; });
+  save();
+  render();
+});
+
+load();
+render();
+</script>
+</body>
+</html>
